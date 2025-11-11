@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Start Minecraft Server</title>
+</head>
+<body>
+  <h1>zizicraft 2.0 feat inoxtag mastu michou xi jinping emmanuel macron lorand popo</h1>
+  <button onclick="startServer()">démarrer serveur</button>
+  <button onclick="checkStatus()">statut du serveur</button>
+  <p id="status"></p>
+
+  <script>
+    async function startServer() {
+      document.getElementById("status").innerText = "ça démarre petit fdp...";
+      const res = await fetch("/start");
+      const data = await res.json();
+      document.getElementById("status").innerText = data.message || "c bon";
+    }
+
+    async function checkStatus() {
+      const res = await fetch("/status");
+      const data = await res.json();
+      const states = {
+        0: "hors ligne",
+        1: "en ligne",
+        2: "en train de démarrer",
+        3: "en train de s'arrêter",
+        4: "redémarre",
+        5: "sauvegarde",
+        6: "charge",
+        7: "a crash",
+        8: "en attente",
+    };
+      document.getElementById("status").innerText = 
+        `Server: ${data.name}\nStatus: ${states[data.status]} \nAddress: ${data.address}`;
+    }
+  </script>
+</body>
+</html>
