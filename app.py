@@ -36,9 +36,9 @@ def start_server():
                 break
 
         if status == 1:
-            return jsonify({"success": True, "message": "Server is online!"})
+            return jsonify({"success": True, "message": "serveur en ligne"})
         else:
-            return jsonify({"success": True, "message": "Server is starting..."})
+            return jsonify({"success": True, "message": "serveur en redémarrage"})
 
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
@@ -60,3 +60,4 @@ def get_status():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
